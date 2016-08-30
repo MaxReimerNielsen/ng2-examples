@@ -1,0 +1,15 @@
+<h2>Angular 2 HTTP Promise simple</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Download count</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let download of data | async">
+            <td>{{ download.day }}</td>
+            <td>{{ download.downloads }}</td>
+        </tr>
+    </tbody>
+</table>

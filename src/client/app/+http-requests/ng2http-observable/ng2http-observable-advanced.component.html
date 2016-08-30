@@ -1,0 +1,17 @@
+<h2>Angular 2 HTTP Observable advanced</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Date</th>
+            <th>Download count</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let download of data">
+            <td>{{ download.id }}</td>
+            <td>{{ download.day }}</td>
+            <td>{{ download.downloads }}</td>
+        </tr>
+    </tbody>
+</table>
