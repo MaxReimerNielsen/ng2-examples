@@ -1,14 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
-  DraggingComponent
+  DraggingComponent,
+  DragulaComponent
 } from './index';
 
 
 @NgModule({
     imports: [CommonModule],
     declarations: [
-      DraggingComponent
+      DraggingComponent,
+      DragulaComponent
     ],
     exports: [DraggingComponent],
     providers: [],

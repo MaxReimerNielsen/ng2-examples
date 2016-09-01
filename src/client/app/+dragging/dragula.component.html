@@ -1,0 +1,19 @@
+<div>
+  <div class='wrapper'>
+    <div class='container container-to' [dragula]='"first-bag"' [dragulaModel]="modelTo">
+      <div>Drag/drop item 1</div>
+    </div>
+    <div class='container container-to' [dragula]='"first-bag"' [dragulaModel]="modelTo">
+      <div>Drag/drop item 1</div>
+    </div>
+    <div class='container container-from' [dragula]='"first-bag"' [dragulaModel]="modelFrom">
+      <div>Drag/drop item 2</div>
+    </div>
+  </div>
+</div>
+<hr />
+From:<br /> 
+{{ modelFrom | json }}
+<hr />
+To:<br /> 
+{{ modelTo | json }}
