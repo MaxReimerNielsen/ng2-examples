@@ -1,0 +1,10 @@
+.canvas {
+  position: relative;
+  background-color: #fdfdfd;
+  height: 400px;
+}
+
+.actions {
+  padding: 15px;
+  text-align: right;
+}
