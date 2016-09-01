@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   DraggingComponent,
-  DragulaComponent
+  DragulaComponent,
+  Ng2DndComponent
 } from './index';
 
 
@@ -10,7 +11,8 @@ import {
     imports: [CommonModule],
     declarations: [
       DraggingComponent,
-      DragulaComponent
+      DragulaComponent,
+      Ng2DndComponent
     ],
     exports: [DraggingComponent],
     providers: [],
