@@ -324,6 +324,8 @@ export class SeedConfig {
       '@angular/router': `node_modules/@angular/router/index.js`,
       'rxjs/*': `node_modules/rxjs/*`,
       'app/*': `/app/*`,
+      'dragula': 'node_modules/dragula/dist/dragula.js',
+      'ng2-dragula': 'node_modules/ng2-dragula',
       '*': `node_modules/*`
     },
     packages: {
