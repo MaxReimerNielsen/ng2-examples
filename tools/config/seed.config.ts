@@ -324,7 +324,10 @@ export class SeedConfig {
       '@angular/router': `node_modules/@angular/router/index.js`,
       'rxjs/*': `node_modules/rxjs/*`,
       'app/*': `/app/*`,
-      '*': `node_modules/*`
+      '*': `node_modules/*`,
+      'd3': 'node_modules/d3/build/d3.js',
+      'nvd3': 'node_modules/nvd3/build/nv.d3.js',
+      'ng2-nvd3': 'node_modules/ng2-nvd3/build/lib/ng2-nvd3.js',
     },
     packages: {
       rxjs: { defaultExtension: 'js' }
@@ -387,7 +390,16 @@ export class SeedConfig {
       },
       'rxjs': {
         defaultExtension: 'js'
-      }
+      },
+      'd3': {
+        defaultExtension: 'js'
+      },
+      'nvd3': {
+        defaultExtension: 'js'
+      },
+      'ng2-nvd3': {
+        defaultExtension: 'js'
+      },
     }
   };
 

@@ -69,7 +69,7 @@ export class DownloadsComponent {
 
       series.push({
         text: library.package,
-        values: this.getValues(library.downloads); 
+        values: this.getValues(library.downloads) 
       });
     }
 
