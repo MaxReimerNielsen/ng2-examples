@@ -1,0 +1,76 @@
+<div class="row">
+    <div class="col-sm-6">
+      <div class="panel panel-warning">
+        <div class="panel-heading">
+          This is the "canvas" area
+        </div>
+        <div class="panel-body canvas" dnd-droppable [dropZones]="['forms-zone']" (onDropSuccess)="transferDataSuccess($event)">
+          <div *ngFor="let item of canvasItems; let i = index"
+            [ngStyle]="setOffset(item)"
+            [dropZones]="['forms-zone']"
+            dnd-draggable
+            [dragEnabled]="true"
+            [dragData]="item"
+            (click)="setActiveItem(item)"
+          >
+            <input *ngIf="item.name === 'TextBox'" type="text" placeholder="{{item.placeholder}}" />
+            <label *ngIf="item.name === 'CheckBox'">
+              <input type="checkbox" [checked]="item.isChecked" (click)="$event.preventDefault()" />
+              {{item.label}}
+            </label>
+            <input *ngIf="item.name === 'RadioButton'" type="radio" />
+            <button *ngIf="item.name === 'SubmitButton'" class="btn btn-primary">{{item.text}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          Form items
+        </div>
+        <div class="panel-body">
+          <ul class="list-group">
+            <li *ngFor="let item of formItems; let i = index"
+              class="list-group-item"
+              [dropZones]="['forms-zone']"
+              dnd-draggable
+              [dragEnabled]="true"
+              [dragData]="item"
+            >{{item.name}}</li>
+          </ul>
+        </div>
+      </div>
+      <div *ngIf="activeItem" class="panel panel-info">
+        <div class="panel-heading">
+          Edit default properties for item
+        </div>
+        <form (ngSubmit)="onSubmit(editForm)" #editForm="ngForm">
+          <div [ngSwitch]="activeItem.name" class="panel-body">
+            <div *ngSwitchCase="'CheckBox'">
+              Is checked: <input type="checkbox" name="isChecked" [ngModel]="activeItem.isChecked" /><br />
+              Label: <input type="text" name="label" [ngModel]="activeItem.label" />
+            </div>
+            <div *ngSwitchCase="'TextBox'">
+              Placeholder text: <input type="text" name="placeholder" [ngModel]="activeItem.placeholder" />
+            </div>
+            <div *ngSwitchCase="'SubmitButton'">
+              Text: <input type="text" name="text" [ngModel]="activeItem.text" />
+            </div>
+          </div>
+          <div class="actions">
+            <button type="reset" class="btn btn-default" (click)="setActiveItem()">Cancel</button>
+            <button type="button" class="btn btn-danger" (click)="deleteCanvasItem(activeItem)">Delete</button>
+            <button type="submit" class="btn btn-primary">Update</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <hr />
+  CanvasItems:<br />
+  {{canvasItems | json}}
+  <hr />
+  FormItems:<br />
+  {{formItems | json}}

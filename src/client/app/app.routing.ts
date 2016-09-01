@@ -1,6 +1,7 @@
 import { Routes, RouterModule } from '@angular/router';
 import { HttpRequestsComponent } from './+http-requests/index';
 import { DownloadsComponent } from './+downloads/index';
+import { DraggingComponent } from './+dragging/index';
 
 const appRoutes: Routes = [
     {
@@ -16,7 +17,10 @@ const appRoutes: Routes = [
         path: 'downloads',
         component: DownloadsComponent
     },
-
+    {
+        path: 'dragging',
+        component: DraggingComponent
+    },
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);

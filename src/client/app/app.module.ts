@@ -6,9 +6,10 @@ import { routing } from './app.routing';
 
 import { HttpRequestsModule } from './+http-requests/http-requests.module';
 import { DownloadsModule } from './+downloads/downloads.module';
+import { DraggingModule } from './+dragging/dragging.module';
 
 @NgModule({
-  imports: [BrowserModule, HttpModule, routing, HttpRequestsModule, DownloadsModule],
+  imports: [BrowserModule, HttpModule, routing, HttpRequestsModule, DownloadsModule, DraggingModule],
   declarations: [AppComponent],
   bootstrap: [AppComponent]
 })
