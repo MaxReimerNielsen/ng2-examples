@@ -326,6 +326,7 @@ export class SeedConfig {
       'app/*': `/app/*`,
       'dragula': 'node_modules/dragula/dist/dragula.js',
       'ng2-dragula': 'node_modules/ng2-dragula',
+      'ng2-dnd': 'node_modules/ng2-dnd',
       '*': `node_modules/*`
     },
     packages: {
@@ -388,6 +389,10 @@ export class SeedConfig {
         defaultExtension: 'js'
       },
       'rxjs': {
+        defaultExtension: 'js'
+      },
+      'ng2-dnd':  { 
+        main: 'index.js',
         defaultExtension: 'js'
       }
     }
