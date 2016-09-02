@@ -76,9 +76,11 @@ export class Ng2DndComponent {
     target.classList.toggle('active', force)
   }
   onDragLeave($event:DragDropData) {
+    this.deleteCanvasItem($event.dragData);
     this.toggleActiveCanvas($event.mouseEvent.target as HTMLElement, false);
   }
   onDragEnter($event:DragDropData) {
+    this.deleteCanvasItem($event.dragData);
     this.toggleActiveCanvas($event.mouseEvent.target as HTMLElement, true);
   }
 }
