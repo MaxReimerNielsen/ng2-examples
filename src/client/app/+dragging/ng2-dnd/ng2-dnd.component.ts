@@ -2,45 +2,13 @@ import { Component } from '@angular/core';
 import {NgStyle} from '@angular/common';
 import {DND_PROVIDERS, DND_DIRECTIVES, DragDropData} from 'ng2-dnd';
 import { FORM_DIRECTIVES } from '@angular/forms';
-
-class BaseComponenent {
-  offsetX: number = 0;
-  offsetY: number = 0;
-
-  constructor(
-    public id: number,
-    public name: string) {
-  }
-}
-
-class CheckBox extends BaseComponenent {
-  constructor(
-    id: number,
-    name: string,
-    public isChecked: boolean,
-    public label: string) {
-    super(id, name);
-  }
-}
-
-class TextBox extends BaseComponenent {
-  constructor(
-    id: number,
-    name: string,
-    public placeholder: string) {
-    super(id, name);
-  }
-}
-
-class SubmitButton extends BaseComponenent {
-  constructor(
-    id: number,
-    name: string,
-    public text: string) {
-    super(id, name);
-  }
-}
-
+import {
+  BaseComponent,
+  CheckBox,
+  RadioButton,
+  SubmitButton,
+  TextBox
+} from './index';
 
 @Component({
   moduleId: module.id,
@@ -52,14 +20,14 @@ class SubmitButton extends BaseComponenent {
 })
 
 export class Ng2DndComponent {
-  canvasItems: Array<BaseComponenent> = [];
-  formItems: Array<BaseComponenent> = [
+  canvasItems: Array<BaseComponent> = [];
+  formItems: Array<BaseComponent> = [
     new CheckBox(0, 'CheckBox', true, 'Lorem Ipsum'),
-    new BaseComponenent(0, 'RadioButton'),
+    new RadioButton(0, 'RadioButton'),
     new TextBox(0, 'TextBox', 'Placeholder text'),
     new SubmitButton(0, 'SubmitButton', 'Submit'),
   ];
-  activeItem: BaseComponenent;
+  activeItem: BaseComponent;
 
   transferDataSuccess($event: DragDropData) {
     const _dragData = $event.dragData;
@@ -85,7 +53,7 @@ export class Ng2DndComponent {
 
     _canvasItems.push(_event);
   }
-  setOffset(item: BaseComponenent) {
+  setOffset(item: BaseComponent) {
     const _style = {
       'left': item.offsetX + 'px',
       'top': item.offsetY + 'px',
@@ -94,13 +62,13 @@ export class Ng2DndComponent {
 
     return _style;
   }
-  setActiveItem(item?: BaseComponenent) {
+  setActiveItem(item?: BaseComponent) {
     this.activeItem = item;
   }
   onSubmit(form: any) {
     Object.assign(this.activeItem, form.value);
   }
-  deleteCanvasItem(item: BaseComponenent) {
+  deleteCanvasItem(item: BaseComponent) {
     this.canvasItems.splice(this.canvasItems.indexOf(item), 1);
     this.setActiveItem();
   }
