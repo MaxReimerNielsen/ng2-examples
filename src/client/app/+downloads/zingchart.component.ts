@@ -1,6 +1,8 @@
 import { Component, NgZone, AfterViewInit, OnDestroy } from '@angular/core';  
 import { Chart } from './chart.model';
 
+declare var zingchart:any;
+
 @Component({
   selector: 'zingchart',
   inputs: ['chart'],

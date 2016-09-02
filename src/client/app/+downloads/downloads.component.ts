@@ -9,7 +9,7 @@ import { DownloadService, NpmModules } from './download.service';
 })
 
 export class DownloadsComponent {
-  charts: Chart[];
+  charts: any[];
 
   constructor(private _service: DownloadService) {}
 
@@ -46,14 +46,14 @@ export class DownloadsComponent {
       });
   }
 
-  getLabels(data) {
+  getLabels(data:any) {
     const keys = Object.keys(data);
-    const labels = data[keys[0]].downloads.map(download => download.day);
+    const labels = data[keys[0]].downloads.map((download:any) => download.day);
 
     return labels; 
   }
 
-  getValues(data) {
+  getValues(data:any) {
     const values = data.map((download: any, index: number) => {
       return download.downloads;
     });
@@ -61,8 +61,8 @@ export class DownloadsComponent {
     return values; 
   }
 
-  getSeries(data) {
-    const series = [];
+  getSeries(data:any) {
+    const series:any[] = [];
 
     for(let key in data){
       const library = data[key];
@@ -76,8 +76,8 @@ export class DownloadsComponent {
     return this.sortSeries(series);
   }
 
-  sortSeries(series) {
-    return series.sort((a,b) => {
+  sortSeries(series:any) {
+    return series.sort((a:any,b:any) => {
       var nameA = a.text.toUpperCase();
       var nameB = b.text.toUpperCase();
       if (nameA < nameB) {

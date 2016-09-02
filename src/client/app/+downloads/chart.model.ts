@@ -18,7 +18,7 @@ export class Chart {
   height: any;
   width: any;
 
-  constructor (config: Object) {
+  constructor (config: any) {
     this.id = config.id;
     this.data = config.data;
     this.height = config.height || 400;

@@ -13,7 +13,7 @@ import {Dragula, DragulaService} from 'ng2-dragula/ng2-dragula';
 export class DragulaComponent {
   constructor(private _dragulaService: DragulaService) {
     _dragulaService.setOptions('first-bag', {
-      accepts(el, target, source, sibling) {
+      accepts(el:any, target:any, source:any, sibling:any) {
         return (target.classList.contains('container-to'));
       },
       copy: true,
