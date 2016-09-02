@@ -4,7 +4,7 @@
         <div class="panel-heading">
           This is the "canvas" area
         </div>
-        <div class="panel-body canvas" dnd-droppable [dropZones]="['forms-zone']" (onDropSuccess)="transferDataSuccess($event)">
+        <div class="panel-body canvas" dnd-droppable [dropZones]="['forms-zone']" (onDragLeave)="onDragLeave($event)" (onDragEnter)="onDragEnter($event)" (onDropSuccess)="transferDataSuccess($event)">
           <div *ngFor="let item of canvasItems; let i = index"
             [ngStyle]="setOffset(item)"
             [dropZones]="['forms-zone']"

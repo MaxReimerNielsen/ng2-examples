@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {NgStyle} from '@angular/common';
-import {DND_PROVIDERS, DND_DIRECTIVES} from 'ng2-dnd';
+import {DND_PROVIDERS, DND_DIRECTIVES, DragDropData} from 'ng2-dnd';
 import { FORM_DIRECTIVES } from '@angular/forms';
 
 class BaseComponenent {
@@ -30,7 +30,6 @@ class TextBox extends BaseComponenent {
     public placeholder: string) {
     super(id, name);
   }
-
 }
 
 class SubmitButton extends BaseComponenent {
@@ -62,13 +61,15 @@ export class Ng2DndComponent {
   ];
   activeItem: BaseComponenent;
 
-  transferDataSuccess($event: any) {
+  transferDataSuccess($event: DragDropData) {
     const _dragData = $event.dragData;
     const _canvasItems = this.canvasItems;
     const {
       offsetX,
       offsetY
     } = $event.mouseEvent;
+
+    this.toggleActiveCanvas($event.mouseEvent.target as HTMLElement, false);
 
     if (_canvasItems.indexOf(_dragData) !== -1) {
       _dragData.offsetX = offsetX;
@@ -102,5 +103,14 @@ export class Ng2DndComponent {
   deleteCanvasItem(item: BaseComponenent) {
     this.canvasItems.splice(this.canvasItems.indexOf(item), 1);
     this.setActiveItem();
+  }
+  toggleActiveCanvas(target:HTMLElement, force:boolean) {
+    target.classList.toggle('active', force)
+  }
+  onDragLeave($event:DragDropData) {
+    this.toggleActiveCanvas($event.mouseEvent.target as HTMLElement, false);
+  }
+  onDragEnter($event:DragDropData) {
+    this.toggleActiveCanvas($event.mouseEvent.target as HTMLElement, true);
   }
 }
