@@ -42,16 +42,18 @@ export class Ng2DndComponent {
     if (_canvasItems.indexOf(_dragData) !== -1) {
       _dragData.offsetX = offsetX;
       _dragData.offsetY = offsetY;
+      this.setActiveItem(_dragData);
 
       return;
     }
 
-    const _event = Object.assign({}, _dragData, {
+    const _newItem = Object.assign({}, _dragData, {
       offsetX: offsetX,
       offsetY: offsetY,
     });
 
-    _canvasItems.push(_event);
+    _canvasItems.push(_newItem);
+    this.setActiveItem(_newItem);
   }
   setOffset(item: BaseComponent) {
     const _style = {
@@ -69,17 +71,26 @@ export class Ng2DndComponent {
     Object.assign(this.activeItem, form.value);
   }
   deleteCanvasItem(item: BaseComponent) {
-    this.canvasItems.splice(this.canvasItems.indexOf(item), 1);
+    const index = this.canvasItems.indexOf(item);
+
+    if(index !== -1) {
+      this.canvasItems.splice(index, 1);
+    }
+
     this.setActiveItem();
   }
   toggleActiveCanvas(target:HTMLElement, force:boolean) {
     target.classList.toggle('active', force)
   }
   onDragLeave($event:DragDropData) {
+    console.log(1);
+    
     this.deleteCanvasItem($event.dragData);
     this.toggleActiveCanvas($event.mouseEvent.target as HTMLElement, false);
   }
   onDragEnter($event:DragDropData) {
+    console.log($event.dragData);
+    
     this.deleteCanvasItem($event.dragData);
     this.toggleActiveCanvas($event.mouseEvent.target as HTMLElement, true);
   }

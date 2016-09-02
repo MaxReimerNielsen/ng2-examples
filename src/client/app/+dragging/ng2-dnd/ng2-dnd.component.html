@@ -4,15 +4,23 @@
         <div class="panel-heading">
           This is the "canvas" area
         </div>
-        <div class="panel-body canvas" dnd-droppable [dropZones]="['forms-zone']" (onDragLeave)="onDragLeave($event)" (onDragEnter)="onDragEnter($event)" (onDropSuccess)="transferDataSuccess($event)">
+        <div class="panel-body canvas"
+          dnd-droppable
+          [dropZones]="['forms-zone']"
+          (onDragLeave)="onDragLeave($event)"
+          (onDragEnter)="onDragEnter($event)"
+          (onDropSuccess)="transferDataSuccess($event)"
+        >
           <div *ngFor="let item of canvasItems; let i = index"
             [ngStyle]="setOffset(item)"
             [dropZones]="['forms-zone']"
             dnd-draggable
-            [dragEnabled]="true"
+            [dragEnabled]="dragItem.dragEnabled"
             [dragData]="item"
-            (click)="setActiveItem(item)"
+            (mouseenter)="setActiveItem(item)"
+            #dragItem
           >
+            <div *ngIf="activeItem === item" (mouseenter)="dragItem.dragEnabled = true" (mouseleave)="dragItem.dragEnabled = false" class="glyphicon glyphicon-move"></div>
             <input *ngIf="item.name === 'TextBox'" type="text" placeholder="{{item.placeholder}}" />
             <label *ngIf="item.name === 'CheckBox'">
               <input type="checkbox" [checked]="item.isChecked" (click)="$event.preventDefault()" />
